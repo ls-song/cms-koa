@@ -1,33 +1,27 @@
-//文章类别
+//菜单
+
 const {Sequelize, Model} = require('sequelize');
 const {sequelize} = require('../utils/db');
 
-class Category extends Model {
-    static async setCategory(params) {
-        return await Category.create({
-            ...params
-        })
-    }
+class Menu extends Model {
 }
 
-Category.init({
+Menu.init({
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    name: {
+    menuName: {
         type: Sequelize.STRING,
         allowNull: false
     },
+    href: Sequelize.STRING,
+    icon: Sequelize.STRING,
     parentId: {
         type: Sequelize.INTEGER,
         defaultValue: 0
-    },
-    sort: {
-        type: Sequelize.INTEGER,
-        defaultValue: 1
     }
-}, {sequelize, tableName: 'cms_category'});
+}, {sequelize, tableName: 'cms_menu'});
 
-module.exports = Category;
+module.exports = Menu;

@@ -1,8 +1,9 @@
+//文章
 const {Sequelize, Model} = require('sequelize');
 const {sequelize} = require('../utils/db');
 const Op=Sequelize.Op;
 class Articles extends Model {
-    static async getArticles(params) {
+    static async getAdminArticles(params) {
         let pageSize =parseInt(params.pageSize);
         let pageNum = parseInt(params.pageNum);
         let articles = await Articles.findAndCountAll({
@@ -10,18 +11,13 @@ class Articles extends Model {
                 title: {
                     [Op.like]: `%${params.title}%`
                 },
-                status:params.status
+                status:params.status,
+                category:params.category
             },
             limit: pageSize,
             offset: (pageNum - 1) * pageSize
         });
         return articles;
-    }
-
-    static async createArticle(){
-         await Articles.findOrCreate({
-
-         })
     }
 }
 

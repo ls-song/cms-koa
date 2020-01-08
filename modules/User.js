@@ -1,3 +1,4 @@
+//用户
 const {Sequelize, Model} = require('sequelize');
 const {sequelize} = require('../utils/db');
 
@@ -40,7 +41,12 @@ User.init({
     city: Sequelize.STRING,
     area: Sequelize.STRING,
     avatarUrl: Sequelize.STRING,
+    birthday:Sequelize.STRING,
     sex: Sequelize.INTEGER,//1代表男，2代表女
+    work:{
+        type:Sequelize.INTEGER,
+        comment: "1:学生,2.工作者"
+    },
     status: {
         type: Sequelize.INTEGER,
         defaultValue: 1,
